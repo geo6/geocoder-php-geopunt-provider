@@ -18,6 +18,7 @@ use Geocoder\Exception\InvalidServerResponse;
 use Geocoder\Exception\UnsupportedOperation;
 use Geocoder\Http\Provider\AbstractHttpProvider;
 use Geocoder\Model\Address;
+use Geocoder\Model\AddressBuilder;
 use Geocoder\Model\AddressCollection;
 use Geocoder\Provider\Provider;
 use Geocoder\Query\GeocodeQuery;
@@ -73,31 +74,25 @@ final class Geopunt extends AbstractHttpProvider implements Provider
 
         $results = [];
         foreach ($json->LocationResult as $location) {
-            $coordinates = $location->Location;
             $streetName = !empty($location->Thoroughfarename) ? $location->Thoroughfarename : null;
             $housenumber = !empty($location->Housenumber) ? $location->Housenumber : null;
             $municipality = !empty($location->Municipality) ? $location->Municipality : null;
             $zipcode = !empty($location->Zipcode) ? $location->Zipcode : null;
-            $countryCode = 'BE';
 
-            $bounds = [
-              'west'  => $location->BoundingBox->LowerLeft->Lon_WGS84,
-              'south' => $location->BoundingBox->UpperRight->Lat_WGS84,
-              'east'  => $location->BoundingBox->LowerLeft->Lon_WGS84,
-              'north' => $location->BoundingBox->UpperRight->Lat_WGS84,
-            ];
+            $builder = new AddressBuilder($this->getName());
+            $builder->setCoordinates($location->Location->Lat_WGS84, $location->Location->Lon_WGS84)
+                ->setStreetNumber($housenumber)
+                ->setStreetName($streetName)
+                ->setLocality($municipality)
+                ->setPostalCode($zipcode)
+                ->setBounds(
+                    $location->BoundingBox->LowerLeft->Lat_WGS84,
+                    $location->BoundingBox->LowerLeft->Lon_WGS84,
+                    $location->BoundingBox->UpperRight->Lat_WGS84,
+                    $location->BoundingBox->UpperRight->Lon_WGS84
+                );
 
-            $results[] = Address::createFromArray([
-                'providedBy'   => $this->getName(),
-                'latitude'     => $coordinates->Lat_WGS84,
-                'longitude'    => $coordinates->Lon_WGS84,
-                'streetNumber' => $housenumber,
-                'streetName'   => $streetName,
-                'locality'     => $municipality,
-                'postalCode'   => $zipcode,
-                'countryCode'  => $countryCode,
-                'bounds'       => $bounds,
-            ]);
+            $results[] = $builder->build();
         }
 
         return new AddressCollection($results);
@@ -120,31 +115,25 @@ final class Geopunt extends AbstractHttpProvider implements Provider
 
         $results = [];
         foreach ($json->LocationResult as $location) {
-            $coordinates = $location->Location;
             $streetName = !empty($location->Thoroughfarename) ? $location->Thoroughfarename : null;
             $housenumber = !empty($location->Housenumber) ? $location->Housenumber : null;
             $municipality = !empty($location->Municipality) ? $location->Municipality : null;
             $zipcode = !empty($location->Zipcode) ? $location->Zipcode : null;
-            $countryCode = 'BE';
 
-            $bounds = [
-              'west'  => $location->BoundingBox->LowerLeft->Lon_WGS84,
-              'south' => $location->BoundingBox->UpperRight->Lat_WGS84,
-              'east'  => $location->BoundingBox->LowerLeft->Lon_WGS84,
-              'north' => $location->BoundingBox->UpperRight->Lat_WGS84,
-            ];
+            $builder = new AddressBuilder($this->getName());
+            $builder->setCoordinates($location->Location->Lat_WGS84, $location->Location->Lon_WGS84)
+                ->setStreetNumber($housenumber)
+                ->setStreetName($streetName)
+                ->setLocality($municipality)
+                ->setPostalCode($zipcode)
+                ->setBounds(
+                    $location->BoundingBox->LowerLeft->Lat_WGS84,
+                    $location->BoundingBox->LowerLeft->Lon_WGS84,
+                    $location->BoundingBox->UpperRight->Lat_WGS84,
+                    $location->BoundingBox->UpperRight->Lon_WGS84
+                );
 
-            $results[] = Address::createFromArray([
-                'providedBy'   => $this->getName(),
-                'latitude'     => $coordinates->Lat_WGS84,
-                'longitude'    => $coordinates->Lon_WGS84,
-                'streetNumber' => $housenumber,
-                'streetName'   => $streetName,
-                'locality'     => $municipality,
-                'postalCode'   => $zipcode,
-                'countryCode'  => $countryCode,
-                'bounds'       => $bounds,
-            ]);
+            $results[] = $builder->build();
         }
 
         return new AddressCollection($results);
