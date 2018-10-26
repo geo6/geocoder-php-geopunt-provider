@@ -25,9 +25,9 @@ class IntegrationTest extends ProviderIntegrationTest
     protected $testIpv6 = false;
 
     protected $skippedTests = [
-        'testGeocodeQuery'              => 'Geopunt provider supports Brussels (Belgium) only.',
-        'testReverseQuery'              => 'Geopunt provider supports Brussels (Belgium) only.',
-        'testReverseQueryWithNoResults' => 'Geopunt provider supports Brussels (Belgium) only.',
+        'testGeocodeQuery'              => 'Geopunt provider supports Brussels and Flanders (Belgium) only.',
+        'testReverseQuery'              => 'Geopunt provider supports Brussels and Flanders (Belgium) only.',
+        'testReverseQueryWithNoResults' => 'Geopunt provider supports Brussels and Flanders (Belgium) only.',
     ];
 
     protected function createProvider(HttpClient $httpClient)
