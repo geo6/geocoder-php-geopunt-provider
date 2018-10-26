@@ -1,5 +1,6 @@
 # :belgium: [Geocoder PHP](https://github.com/geocoder-php/Geocoder) "Geopunt" provider
 
+[![Build Status](https://travis-ci.org/geo6/geocoder-php-geopunt-provider.svg?branch=master)](https://travis-ci.org/geo6/geocoder-php-geopunt-provider)
 [![Latest Stable Version](https://poser.pugx.org/geo6/geocoder-php-geopunt-provider/v/stable)](https://packagist.org/packages/geo6/geocoder-php-geopunt-provider)
 [![Total Downloads](https://poser.pugx.org/geo6/geocoder-php-geopunt-provider/downloads)](https://packagist.org/packages/geo6/geocoder-php-geopunt-provider)
 [![Monthly Downloads](https://poser.pugx.org/geo6/geocoder-php-geopunt-provider/d/monthly.png)](https://packagist.org/packages/geo6/geocoder-php-geopunt-provider)
