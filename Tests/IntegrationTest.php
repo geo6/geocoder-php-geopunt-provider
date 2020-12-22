@@ -32,7 +32,7 @@ class IntegrationTest extends ProviderIntegrationTest
 
     protected function createProvider(HttpClient $httpClient)
     {
-        return new Geopunt($httpClient, 'Geocoder PHP/Geopunt Provider/Integration Test');
+        return new Geopunt($httpClient);
     }
 
     protected function getCacheDir()

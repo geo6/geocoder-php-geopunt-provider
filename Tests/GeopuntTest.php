@@ -29,7 +29,7 @@ class GeopuntTest extends BaseTestCase
         $this->expectException(\Geocoder\Exception\UnsupportedOperation::class);
         $this->expectExceptionMessage('The Geopunt provider does not support IP addresses, only street addresses.');
 
-        $provider = new Geopunt($this->getMockedHttpClient(), 'Geocoder PHP/Geopunt Provider/Geopunt Test');
+        $provider = new Geopunt($this->getMockedHttpClient());
         $provider->geocodeQuery(GeocodeQuery::create('127.0.0.1'));
     }
 
@@ -38,7 +38,7 @@ class GeopuntTest extends BaseTestCase
         $this->expectException(\Geocoder\Exception\UnsupportedOperation::class);
         $this->expectExceptionMessage('The Geopunt provider does not support IP addresses, only street addresses.');
 
-        $provider = new Geopunt($this->getMockedHttpClient(), 'Geocoder PHP/Geopunt Provider/Geopunt Test');
+        $provider = new Geopunt($this->getMockedHttpClient());
         $provider->geocodeQuery(GeocodeQuery::create('::1'));
     }
 
@@ -47,13 +47,13 @@ class GeopuntTest extends BaseTestCase
         $this->expectException(\Geocoder\Exception\UnsupportedOperation::class);
         $this->expectExceptionMessage('The Geopunt provider does not support IP addresses, only street addresses.');
 
-        $provider = new Geopunt($this->getMockedHttpClient(), 'Geocoder PHP/Geopunt Provider/Geopunt Test');
+        $provider = new Geopunt($this->getMockedHttpClient());
         $provider->geocodeQuery(GeocodeQuery::create('::ffff:88.188.221.14'));
     }
 
     public function testReverseQuery()
     {
-        $provider = new Geopunt($this->getHttpClient(), 'Geocoder PHP/Geopunt Provider/Geopunt Test');
+        $provider = new Geopunt($this->getHttpClient());
         $results = $provider->reverseQuery(ReverseQuery::fromCoordinates(50.991974, 5.351705)->withLimit(1));
 
         $this->assertInstanceOf('Geocoder\Model\AddressCollection', $results);
@@ -70,7 +70,7 @@ class GeopuntTest extends BaseTestCase
 
     public function testGeocodeQuery()
     {
-        $provider = new Geopunt($this->getHttpClient(), 'Geocoder PHP/Geopunt Provider/Geopunt Test');
+        $provider = new Geopunt($this->getHttpClient());
         $results = $provider->geocodeQuery(GeocodeQuery::create('Trambergstraat 1, 3520 Zonhoven')->withLimit(1));
 
         $this->assertInstanceOf('Geocoder\Model\AddressCollection', $results);
