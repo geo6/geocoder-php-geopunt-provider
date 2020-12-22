@@ -24,32 +24,29 @@ class GeopuntTest extends BaseTestCase
         return __DIR__.'/.cached_responses';
     }
 
-    /**
-     * @expectedException \Geocoder\Exception\UnsupportedOperation
-     * @expectedExceptionMessage The Geopunt provider does not support IP addresses, only street addresses.
-     */
     public function testGeocodeWithLocalhostIPv4()
     {
+        $this->expectException(\Geocoder\Exception\UnsupportedOperation::class);
+        $this->expectExceptionMessage('The Geopunt provider does not support IP addresses, only street addresses.');
+
         $provider = new Geopunt($this->getMockedHttpClient(), 'Geocoder PHP/Geopunt Provider/Geopunt Test');
         $provider->geocodeQuery(GeocodeQuery::create('127.0.0.1'));
     }
 
-    /**
-     * @expectedException \Geocoder\Exception\UnsupportedOperation
-     * @expectedExceptionMessage The Geopunt provider does not support IP addresses, only street addresses.
-     */
     public function testGeocodeWithLocalhostIPv6()
     {
+        $this->expectException(\Geocoder\Exception\UnsupportedOperation::class);
+        $this->expectExceptionMessage('The Geopunt provider does not support IP addresses, only street addresses.');
+
         $provider = new Geopunt($this->getMockedHttpClient(), 'Geocoder PHP/Geopunt Provider/Geopunt Test');
         $provider->geocodeQuery(GeocodeQuery::create('::1'));
     }
 
-    /**
-     * @expectedException \Geocoder\Exception\UnsupportedOperation
-     * @expectedExceptionMessage The Geopunt provider does not support IP addresses, only street addresses.
-     */
     public function testGeocodeWithRealIPv6()
     {
+        $this->expectException(\Geocoder\Exception\UnsupportedOperation::class);
+        $this->expectExceptionMessage('The Geopunt provider does not support IP addresses, only street addresses.');
+
         $provider = new Geopunt($this->getMockedHttpClient(), 'Geocoder PHP/Geopunt Provider/Geopunt Test');
         $provider->geocodeQuery(GeocodeQuery::create('::ffff:88.188.221.14'));
     }
@@ -82,8 +79,8 @@ class GeopuntTest extends BaseTestCase
         /** @var \Geocoder\Model\Address $result */
         $result = $results->first();
         $this->assertInstanceOf('\Geocoder\Model\Address', $result);
-        $this->assertEquals(50.991974, $result->getCoordinates()->getLatitude(), '', 0.00001);
-        $this->assertEquals(5.351705, $result->getCoordinates()->getLongitude(), '', 0.00001);
+        $this->assertEqualsWithDelta(50.991974, $result->getCoordinates()->getLatitude(), 0.00001, '');
+        $this->assertEqualsWithDelta(5.351705, $result->getCoordinates()->getLongitude(), 0.00001, '');
         $this->assertEquals('1', $result->getStreetNumber());
         $this->assertEquals('Trambergstraat', $result->getStreetName());
         $this->assertEquals('3520', $result->getPostalCode());
