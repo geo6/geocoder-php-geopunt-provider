@@ -12,7 +12,7 @@ namespace Geocoder\Provider\Geopunt\Tests;
 
 use Geocoder\IntegrationTest\ProviderIntegrationTest;
 use Geocoder\Provider\Geopunt\Geopunt;
-use Http\Client\HttpClient;
+use Psr\Http\Client\ClientInterface;
 
 class IntegrationTest extends ProviderIntegrationTest
 {
@@ -30,7 +30,7 @@ class IntegrationTest extends ProviderIntegrationTest
         'testReverseQueryWithNoResults' => 'Geopunt provider supports Brussels and Flanders (Belgium) only.',
     ];
 
-    protected function createProvider(HttpClient $httpClient)
+    protected function createProvider(ClientInterface $httpClient)
     {
         return new Geopunt($httpClient);
     }
