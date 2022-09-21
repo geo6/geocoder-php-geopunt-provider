@@ -84,6 +84,8 @@ final class Geopunt extends AbstractHttpProvider implements Provider
                 ->setStreetName($streetName)
                 ->setLocality($municipality)
                 ->setPostalCode($zipcode)
+                ->setCountry('België')
+                ->setCountryCode('BE')
                 ->setBounds(
                     $location->BoundingBox->LowerLeft->Lat_WGS84,
                     $location->BoundingBox->LowerLeft->Lon_WGS84,
@@ -125,6 +127,8 @@ final class Geopunt extends AbstractHttpProvider implements Provider
                 ->setStreetName($streetName)
                 ->setLocality($municipality)
                 ->setPostalCode($zipcode)
+                ->setCountry('België')
+                ->setCountryCode('BE')
                 ->setBounds(
                     $location->BoundingBox->LowerLeft->Lat_WGS84,
                     $location->BoundingBox->LowerLeft->Lon_WGS84,
