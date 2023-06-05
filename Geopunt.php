@@ -89,7 +89,8 @@ final class Geopunt extends AbstractHttpProvider implements Provider
                     $location->BoundingBox->LowerLeft->Lon_WGS84,
                     $location->BoundingBox->UpperRight->Lat_WGS84,
                     $location->BoundingBox->UpperRight->Lon_WGS84
-                );
+                )
+                ->setCountry('BE');
 
             $results[] = $builder->build();
         }
@@ -130,7 +131,8 @@ final class Geopunt extends AbstractHttpProvider implements Provider
                     $location->BoundingBox->LowerLeft->Lon_WGS84,
                     $location->BoundingBox->UpperRight->Lat_WGS84,
                     $location->BoundingBox->UpperRight->Lon_WGS84
-                );
+                )
+                ->setCountry('BE');
 
             $results[] = $builder->build();
         }
