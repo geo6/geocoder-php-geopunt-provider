@@ -12,8 +12,8 @@
 
 This is the "Geopunt" provider for the [Geocoder PHP](https://github.com/geocoder-php/Geocoder).
 
-**Coverage:** Flanders + Brussels (Belgium)  
-**API:** <http://loc.geopunt.be/>
+**Coverage:** Flanders + Brussels (Belgium)
+**API:** <https://geo.api.vlaanderen.be/geolocation/>
 
 ## Install
 
