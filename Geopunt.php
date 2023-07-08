@@ -32,12 +32,12 @@ final class Geopunt extends AbstractHttpProvider implements Provider
     /**
      * @var string
      */
-    const GEOCODE_ENDPOINT_URL = 'https://loc.geopunt.be/v4/Location?q=%s&c=%d';
+    const GEOCODE_ENDPOINT_URL = 'https://geo.api.vlaanderen.be/geolocation/v4/Location?q=%s&c=%d';
 
     /**
      * @var string
      */
-    const REVERSE_ENDPOINT_URL = 'https://loc.geopunt.be/v4/Location?latlon=%F,%F&c=%d';
+    const REVERSE_ENDPOINT_URL = 'https://geo.api.vlaanderen.be/geolocation/v4/Location?latlon=%F,%F&c=%d';
 
     /**
      * @param ClientInterface $client an HTTP adapter
